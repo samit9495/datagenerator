@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Creation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        div{text-align:center}
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="jumbotron">
+
+{% if form == "form1" %}
+<div>
+<h2>Please choose a type you want to create.</h2>
+<br>
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="category">Choose your category:</label>
+    <select name="category" id="category">
+        {% for item in choices %}
+          <option value="{{item}}">{{item}}</option>
+        {% endfor %}
+    </select>
+
+<br>
+<br>
+<br>
+
+    <div >
+    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+</div>
+</form>
+
+
+
+{% else %}
+
+    <h2>Please Select from below options</h2>
+
+<form id="form2" method="POST" action="/save_category">
+
+
+
+    {% if category == "Special Sequence" %}
+    <br>
+    <label for="sequence">Sequence:</label>
+        <input type="text" id="sequence" name="sequence">
+    <p>Hint: To Create a sequence, use # For a Number and ? For a Alphabet</p>
+    {% else %}
+        <label for="length">Length:</label>
+        <input type="number" id="length" name="length" min="1" value=1>
+    {% endif %}
+
+    {% if category != "Number" %}
+    <br>
+    <input type="radio" id="upper" name="case" value="Upper">
+     <label for="upper">Upper Case</label><br>
+     <input type="radio" id="lower" name="case" value="Lower">
+     <label for="lower">Lower Case</label><br>
+     <input type="radio" id="mix" name="case" value="Mix">
+     <label for="mix">Mix</label>
+    {% endif %}
+
+
+
+    <br>
+    <br>
+
+    <button type="submit" class="btn btn-success" name="submit">Submit</button>
+</form>
+
+{% endif %}
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

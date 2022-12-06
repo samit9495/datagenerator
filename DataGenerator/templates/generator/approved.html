@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Approved</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        div{text-align:center}
+        select{height: 150px !important;
+    width: 165px;
+        }
+    </style>
+
+<style>
+        table, th, td {
+            border: 1px solid;
+
+                        }
+        table{
+        width:100%;}
+        div {
+        text-align: center;
+        }
+        tr:hover {background-color: coral;}
+
+        th {
+          background-color: #04AA6D;
+          color: white;
+        }
+        th, td {
+          padding: 12px;
+          text-align: left;
+        }
+
+
+        .button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          -webkit-transition-duration: 0.4s; /* Safari */
+          transition-duration: 0.4s;
+        }
+        .button:hover {
+          box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+       </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+  <div class="jumbotron">
+<div>
+<h1>Here is the data requested.</h1>
+    </div>
+
+    <table>
+    <tr>
+        {% for k in keys %}
+        <th>{{k}}</th>
+        {% endfor %}
+    </tr>
+    {% for row in final %}
+    <tr>
+        {% for k in row %}
+        <td>{{k}}</td>
+        {% endfor %}
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<form method="POST">
+    {% csrf_token %}
+    <br>
+    <button type="submit" name="Download" value="Download">Download</button>
+</form>
+
+  </div>
+  </div>
+
+</body>
+</html>     

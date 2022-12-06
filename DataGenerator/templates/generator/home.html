@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        div{text-align:center}
+        select{height: 150px !important;
+    width: 165px;
+        }
+    </style>
+
+
+</head>
+<body>
+<div class="container">
+  <div class="jumbotron">
+
+<div>
+<h1>Please Enter your Input Here.</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="category">Choose your type:</label>
+    <br>
+    <select name="category" id="category" multiple>
+        {% for item in choices %}
+          <option value="{{item}}">{{item}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <label for="count">Count:</label>
+    <br>
+    <input type="number" id="count" name="count" min="1" value=1>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-success" name="submit">Submit</button>
+
+</form>
+
+
+</div>
+</div>
+</div>
+</body>
+</html>
